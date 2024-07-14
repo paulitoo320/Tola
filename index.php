@@ -13,6 +13,7 @@ $topics = $conn->query("
     FROM topics 
     LEFT JOIN replies ON topics.id = replies.topic_id
     GROUP BY topics.id, topics.title, topics.category, topics.user_name, topics.user_image, topics.created_at
+    ORDER BY created_at DESC
 ");
 
 
