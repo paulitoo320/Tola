@@ -119,7 +119,6 @@ if (isset($_POST['submit'])){
                         <?php endforeach; ?>
                     </ul>
                     <?php if (isset($_SESSION['username'])) : ?>
-                        <?php if ($reply->user_id == $_SESSION['user_id']) : ?>
                             <h3>Reply To Topic</h3>
                             <form role="form" method="post" action="topic.php?id=<?php echo $id; ?>">
                                 <div class="form-group">
@@ -130,7 +129,6 @@ if (isset($_POST['submit'])){
                                 </div>
                                 <button type="submit" name="submit" class="color btn btn-default">Submit</button>
                             </form>
-                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>
