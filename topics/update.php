@@ -30,7 +30,7 @@ if (isset($_POST["submit"])) {
         $body = $_POST['body'];
         $user_name = $_SESSION['username'];
 
-        $update = $conn->prepare("UPDATE topics SET title = :title, category = :category, body = :body, user_name = :user_name");
+        $update = $conn->prepare("UPDATE topics SET title = :title, category = :category, body = :body, user_name = :user_name WHERE id='$id'");
         $update->execute([
             ":title" => $title,
             ":category" => $category,
@@ -67,7 +67,8 @@ $allCats = $categories_select->fetchAll(PDO::FETCH_OBJ);
                                 <select name="category" class="form-control">
                                     <?php foreach ($allCats as $cat) : ?>
                                         <option value="<?php echo $cat->name ?>"><?php echo $cat->name ?></option>
-                                    <?php endforeach;?>                                </select>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Topic Body</label>
