@@ -19,7 +19,7 @@ if (isset($_GET['id'])){
 
     // grapping replies in a dynamic way
 
-    $reply = $conn->query("SELECT * FROM replies WHERE topic_id='$id'");
+    $reply = $conn->query("SELECT * FROM replies WHERE topic_id='$id' ORDER BY created_at DESC");
     $reply->execute();
 
     $allreplies = $reply->fetchAll(PDO::FETCH_OBJ);
