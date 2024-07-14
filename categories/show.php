@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="col-md-10">
                                     <div class="topic-content pull-right">
-                                        <h3><a href="../topics/t opic.php?id=<?php echo $topic->id;?>"><?php echo $topic->title;?></a></h3>
+                                        <h3><a href="../topics/topic.php?id=<?php echo $topic->id;?>"><?php echo $topic->title;?></a></h3>
                                         <div class="topic-info">
                                             <a href="<?php echo APPURL; ?>/categories/show.php?name=<?php echo $topic->category; ?>"><?php echo $topic->category;?></a> >> <a href="<?php echo APPURL; ?>/users/profile.php?name=<?php echo $topic->user_name; ?>"><?php echo $topic->user_name;?></a> >> Posted on: <?php echo $topic->created_at;?>
                                         </div>

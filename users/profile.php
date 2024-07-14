@@ -1,6 +1,5 @@
 <?php require "../includes/header.php";?>
 <?php require "../config/config.php";?>
-
 <?php
     if (!isset($_SESSION['username'])){
         header("location: ".APPURL."");
@@ -45,7 +44,7 @@
                                         <img class="avatar pull-left" src="../img/<?php echo $user->avatar;?>" />
                                         <ul>
                                             <li><strong><?php echo $user->username; ?></strong></li>
-                                            <li><a href="profile.php?name=<?php echo $user->username; ?>">Profil</a></li>
+                                            <li><a href="profile.php?name=<?php echo $user->username; ?>">Profile</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-10">
