@@ -1,6 +1,4 @@
-
 <?php
-
     $topics = $conn->query("SELECT COUNT(*) AS all_topics FROM `topics`");
     $topics->execute();
     $allTopics = $topics->fetch(PDO::FETCH_OBJ);

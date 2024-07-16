@@ -2,7 +2,7 @@
 <?php require "../../config/config.php";?>
 <?php
     if (!isset($_SESSION['adminname'])){
-        header("location: ".ADMINNAME."/admins/login-admins.php");
+        header("location: ".ADMINURL."/admins/login-admins.php");
     }
     $admins = $conn->query("SELECT * FROM admins");
     $admins->execute();
