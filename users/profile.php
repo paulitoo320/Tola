@@ -30,7 +30,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-14">
             <div class="main-col">
                 <div class="block">
                     <h1 class="pull-left"><?php echo $user->name; ?></h1>

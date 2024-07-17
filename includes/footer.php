@@ -28,17 +28,15 @@
     $countTopics = $topics->fetch(PDO::FETCH_OBJ);
 
     //count categories
-    $categories_count = $conn->query("SELECT COUNT(*) AS categories_count FROM `topics`");
+    $categories_count = $conn->query("SELECT COUNT(*) AS categories_count FROM `categories`");
     $categories_count->execute();
     $allCategories_count = $categories_count->fetch(PDO::FETCH_OBJ);
 
 ?>
 
 
-<div class="col-md-4">
+<div class="col-md-6">
     <div class="sidebar">
-
-
         <div class="block">
             <h3>Categories</h3>
             <div class="list-group block ">

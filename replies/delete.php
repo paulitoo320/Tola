@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         $delete = $conn->query("DELETE FROM replies WHERE id = '$id'");
         $delete->execute;
 
+        $deleteVoteReply = $conn->query("DELETE FROM votesReplies WHERE reply_id = '$id'");
+        $deleteVoteReply->execute;
+
         header("location: " . APPURL ."");
     }
 }

@@ -17,6 +17,9 @@
             $delete = $conn->query("DELETE FROM topics WHERE id = '$id'");
             $delete->execute;
 
+            $deleteVote = $conn->query("DELETE FROM votes WHERE topic_id = '$id'");
+            $deleteVote->execute;
+
             header("location: ".APPURL."");
         }
     }

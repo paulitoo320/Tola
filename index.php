@@ -20,7 +20,7 @@ $topics = $conn->query("
         GROUP BY topic_id
     ) AS votes ON topics.id = votes.topic_id
     GROUP BY topics.id, topics.title, topics.category, topics.user_name, topics.user_image, topics.created_at
-    ORDER BY total_votes DESC, created_at DESC
+    ORDER BY count_votesUp DESC
 ");
 
 $topics->execute();
@@ -29,7 +29,7 @@ $allTopics = $topics->fetchAll(PDO::FETCH_OBJ);
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-14">
             <div class="main-col">
                 <div class="block">
                     <h1 class="pull-left">Welcome to forum</h1>
