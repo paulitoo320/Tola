@@ -122,7 +122,7 @@ $allCats = $categories_select->fetchAll(PDO::FETCH_OBJ);
                             <label>About Me</label>
                             <textarea id="about" rows="6" cols="80" class="form-control" name="about" placeholder="Tell us about yourself (Optional)"></textarea>
                         </div>
-                        <input data-loading-text="Loading..." name="submit" type="submit" class="color btn btn-default" value="Register" />
+                        <input data-loading-text="Loading..." name="submit" type="submit" class="color btn btn-default bg-info" value="Register" />
                     </form>
                 </div>
             </div>

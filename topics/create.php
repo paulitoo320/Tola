@@ -61,7 +61,7 @@ $allCats = $categories_select->fetchAll(PDO::FETCH_OBJ);
 									<textarea id="body" rows="10" cols="80" class="form-control" name="body"></textarea>
 									<script>CKEDITOR.replace('body');</script>
 								</div>
-							<button type="submit" name="submit" class="color btn btn-default">Create</button>
+							<button type="submit" name="submit" class="color btn btn-default bg-info">Create</button>
 						</form>
 					</div>
 				</div>

@@ -66,7 +66,7 @@
                                 <div class="col-md-10" style="margin-left: 40px">
                                     Posted on: <?php echo $topic->created_at; ?>
                                     <div class="topic-content pull-right">
-                                        <a class="text-dark" href="topics/topic.php?id=<?php echo $topic->id; ?>">
+                                        <a class="text-dark" href="<?php echo APPURL ?>/topics/topic.php?id=<?php echo $topic->id; ?>">
                                             <div class="topic-description" id="description-<?php echo $topic->id; ?>">
                                                 <?php echo substr($topic->body, 0, 100); ?>
                                             </div>
