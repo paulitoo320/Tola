@@ -60,7 +60,7 @@ if (isset($_POST["submit"])) {
                             <textarea id="body" rows="10" cols="80" class="form-control" name="about"><?php echo $user->about; ?></textarea>
                             <script>CKEDITOR.replace('body');</script>
                         </div>
-                        <button type="submit" name="submit" class="color btn btn-default">Update</button>
+                        <button type="submit" name="submit" class="color btn btn-default bg-info">Update</button>
                     </form>
                 </div>
             </div>

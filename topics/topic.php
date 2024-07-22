@@ -14,21 +14,21 @@ if (isset($_GET['id'])){
     $topicCount->execute();
     $count = $topicCount->fetch(PDO::FETCH_OBJ);
 
+    $replyCount = $conn->query("SELECT COUNT(*) AS count_replies FROM replies WHERE topic_id='$id'");
+    $replyCount->execute();
+    $countReplies = $replyCount->fetch(PDO::FETCH_OBJ);
+
     // grapping replies in a dynamic way
     $reply = $conn->query("SELECT * FROM replies WHERE topic_id='$id'");
     $reply->execute();
     $allreplies = $reply->fetchAll(PDO::FETCH_OBJ);
-
-
 } else{
     header("Location: ".APPURL."/404.php");
 }
 
-if (isset($_POST['submit'])){
     if (isset($_POST["submit"])) {
         if (empty($_POST['reply'])){
             echo "<script>alert('All fields must be filled');</script>";
-
         }else {
             $reply = $_POST['reply'];
             $user_id = $_SESSION['user_id'];
@@ -46,9 +46,7 @@ if (isset($_POST['submit'])){
             ]);
             header("location: " . APPURL . "/topics/topic.php?id=".$id."");
         }
-
     }
-}
 //votes Topic count
 //votes up count
 $voteUp = $conn->query("SELECT COUNT(*) AS count_votesUp FROM `votes` WHERE vote_type='up' AND topic_id='$id'");
@@ -59,11 +57,6 @@ $votesUp = $voteUp->fetch(PDO::FETCH_OBJ);
 $voteDown = $conn->query("SELECT COUNT(*) AS count_votesDown FROM `votes` WHERE vote_type='down' AND topic_id='$id'");
 $voteDown->execute();
 $votesDown = $voteDown->fetch(PDO::FETCH_OBJ);
-
-// grapping reply in a dynamic way
-$reply1 = $conn->query("SELECT * FROM replies WHERE topic_id='$id'");
-$reply1->execute();
-$allreplies1 = $reply1->fetch(PDO::FETCH_OBJ);
 
 //votes Replies count
 //votes up count
@@ -127,14 +120,22 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                                             <a class="btn btn-warning" href="update.php?id=<?php echo $singleTopic->id;?>" role="button">Update</a>
                                         <?php endif; ?>
                                     <?php endif; ?>
-                                    <a href="<?php echo APPURL; ?>/topics/vote.php?id=<?php echo $singleTopic->id; ?>&vote_type=up">
+
+                                    <button class="p-1 m-1 border rounded-pill bg-light">
+                                        <a class="text-dark border-end" href="<?php echo APPURL; ?>/topics/vote.php?id=<?php echo $singleTopic->id; ?>&vote_type=up">
                                         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path></svg>
-                                        <?php echo  $votesUp->count_votesUp; ?>
-                                    </a>
-                                    <a href="<?php echo APPURL; ?>/topics/vote.php?id=<?php echo $singleTopic->id; ?>&vote_type=down">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path></svg>
-                                            <?php echo  $votesDown->count_votesDown; ?>
-                                    </a>
+                                        Vote positif <?php echo  $votesUp->count_votesUp; ?>
+                                        </a>
+                                        <a class="text-dark border-start" href="<?php echo APPURL; ?>/topics/vote.php?id=<?php echo $singleTopic->id; ?>&vote_type=down">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+                                                <?php echo  $votesDown->count_votesDown; ?>
+                                        </a>
+                                    </button>
+                                    <button class="m-2 text-dark p-1 bg-light">                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                            <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+                                        </svg>
+                                        <?php echo $countReplies->count_replies; ?>
+                                    </button>
                                 </div>
                             </div>
                         </li>
@@ -176,18 +177,20 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                                             }
                                         }
                                         ?>
-                                        <a href="<?php echo APPURL; ?>/topics/voteReply.php?id=<?php echo $reply->id; ?>&vote_type=up&topic_id=<?php echo $singleTopic->id;?>">
+
+                                        <a class="text-dark" href="<?php echo APPURL; ?>/topics/voteReply.php?id=<?php echo $reply->id; ?>&vote_type=up&topic_id=<?php echo $singleTopic->id;?>">
                                             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path></svg>
-                                            <?php echo  $voteCountUp->positive_votes_count; ?>
+                                            Vote positif <?php echo  $voteCountUp->positive_votes_count; ?>
                                         </a>
-                                        <a href="<?php echo APPURL; ?>/topics/voteReply.php?id=<?php echo $reply->id; ?>&vote_type=down&topic_id=<?php echo $singleTopic->id;?>">
+
+                                        <a class="text-dark" href="<?php echo APPURL; ?>/topics/voteReply.php?id=<?php echo $reply->id; ?>&vote_type=down&topic_id=<?php echo $singleTopic->id;?>">
                                             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path></svg>
                                             <?php echo  $voteCountDown->negative_votes_count; ?>
                                         </a>
+
                                         <?php if (isset($_SESSION['username'])) : ?>
                                             <?php if ($reply->user_id == $_SESSION['user_id']) : ?>
                                                 <a class="btn btn-warning float-end" href="../replies/update.php?id=<?php echo $reply->id;?>" role="button">Update</a>
-
                                                 <a class="btn btn-danger float-end" href="../replies/delete.php?id=<?php echo $reply->id;?>" role="button">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>

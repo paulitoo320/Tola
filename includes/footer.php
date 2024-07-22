@@ -29,7 +29,7 @@ $topics->execute();
 $countTopics = $topics->fetch(PDO::FETCH_OBJ);
 
 //count categories
-$categories_count = $conn->query("SELECT COUNT(*) AS categories_count FROM `topics`");
+$categories_count = $conn->query("SELECT COUNT(*) AS categories_count FROM `categories`");
 $categories_count->execute();
 $allCategories_count = $categories_count->fetch(PDO::FETCH_OBJ);
 
