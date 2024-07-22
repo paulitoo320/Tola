@@ -139,6 +139,7 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                                 </div>
                             </div>
                         </li>
+
                         <?php if (isset($_SESSION['username'])) : ?>
                             <form role="form" method="post" action="topic.php?id=<?php echo $id; ?>" class="d-flex align-items-center">
                                 <textarea id="reply" rows="1" placeholder="comment on this content" class="form-control me-2" name="reply" style="width: 500px;"></textarea>
@@ -148,6 +149,7 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                                 </script>
                             </form>
                         <?php endif; ?>
+
                         <?php foreach ($allreplies as $reply) : ?>
                             <li class="topic topic">
                                 <div class="row">
@@ -177,7 +179,6 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                                             }
                                         }
                                         ?>
-
                                         <a class="text-dark" href="<?php echo APPURL; ?>/topics/voteReply.php?id=<?php echo $reply->id; ?>&vote_type=up&topic_id=<?php echo $singleTopic->id;?>">
                                             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path></svg>
                                             Vote positif <?php echo  $voteCountUp->positive_votes_count; ?>
@@ -187,7 +188,6 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                                             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path></svg>
                                             <?php echo  $voteCountDown->negative_votes_count; ?>
                                         </a>
-
                                         <?php if (isset($_SESSION['username'])) : ?>
                                             <?php if ($reply->user_id == $_SESSION['user_id']) : ?>
                                                 <a class="btn btn-warning float-end" href="../replies/update.php?id=<?php echo $reply->id;?>" role="button">Update</a>
@@ -204,7 +204,6 @@ $votesRepliesDown = $voteReplyDown->fetchAll(PDO::FETCH_OBJ);
                             </li>
                         <?php endforeach; ?>
                     </ul>
-
                 </div>
             </div>
         </div>

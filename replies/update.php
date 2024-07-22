@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
                             <input type="text" value="<?php echo $reply->reply; ?>" class="form-control" name="reply" placeholder="Enter Reply">
                         </div>
 
-                        <button type="submit" name="submit" class="color btn btn-default">Update</button>
+                        <button type="submit" name="submit" class="color btn btn-default bg-info">Update</button>
                     </form>
                 </div>
             </div>
