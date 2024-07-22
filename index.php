@@ -121,11 +121,11 @@ $allTopics = $topics->fetchAll(PDO::FETCH_OBJ);
                     ?>
                     <div class="p-1 m-1">
                         <button class="p-1 m-1 border rounded-pill bg-light" >
-                        <a class="text-dark border-end" href="<?php echo APPURL; ?>/topics/vote.php?id=<?php echo $topic->id; ?>&vote_type=up">
+                        <a class="text-dark border-end" href="<?php echo APPURL; ?>/voteIndex.php?id=<?php echo $topic->id; ?>&vote_type=up">
                             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path></svg>
                             Vote positif <?php echo  $votesUp->count_votesUp; ?>
                             </a>
-                            <a class="text-dark border-start" href="<?php echo APPURL; ?>/topics/vote.php?id=<?php echo $topic->id; ?>&vote_type=down">
+                            <a class="text-dark border-start" href="<?php echo APPURL; ?>/voteIndex.php?id=<?php echo $topic->id; ?>&vote_type=down">
                                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path></svg>
                                     <?php echo  $votesDown->count_votesDown; ?>
                             </a>
